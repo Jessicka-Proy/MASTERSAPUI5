@@ -1,0 +1,19 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m">
+    <FlexBox alignItems="Center" justifyContent="Center">
+        <Button text="{i18n>interno}" press="navtoStep2" class="sapUiSmallMarginEnd">
+            <customData>
+                <core:CustomData key="tipoEmpleado" value="interno"></core:CustomData>
+            </customData>
+        </Button>
+        <Button text="{i18n>autonomo}" press="navtoStep2" class="sapUiSmallMarginEnd">
+            <customData>
+                <core:CustomData key="tipoEmpleado" value="autonomo"></core:CustomData>
+            </customData>
+        </Button>
+        <Button text="{i18n>gerente}" press="navtoStep2">
+            <customData>
+                <core:CustomData key="tipoEmpleado" value="gerente"></core:CustomData>
+            </customData>
+        </Button>
+    </FlexBox>
+</core:FragmentDefinition>

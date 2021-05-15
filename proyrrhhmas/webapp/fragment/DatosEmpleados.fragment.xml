@@ -1,0 +1,54 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core"
+    xmlns="sap.m"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:l="sap.ui.layout"
+    xmlns:u="sap.ui.unified">
+
+    <f:SimpleForm editable="true">
+        <f:content>
+            <Label text="{i18n>nombre}" required="true"/>
+            <Input value="{/FirstName}" valueState="{/_NombreStatus}" class= "sapUiSmallMarginEnd" change="validarDatosEmpleados" />
+            <Label text="{i18n>apellidos}" required="true"/>
+            <Input value="{/LastName}" valueState="{/_ApellidosStatus}" class= "sapUiSmallMarginEnd" change="validarDatosEmpleados"/>
+            <Label text="{= ${/_type} === 'autonomo' ? ${i18n>CIF} : ${i18n>DNI}}" required="true"/>
+            <Input value="{/Dni}" valueState="{/_DNIStatus}" class= "sapUiSmallMarginEnd" change="validarDNI"/>
+            <Label text="{= ${/_type} === 'autonomo' ? ${i18n>precioDiario} : ${i18n>salarioBrutoAnual}}"/>
+            <l:VerticalLayout>
+                <Slider value="{/_Salario}" min="12000" max="80000" step="1000" 
+                        inputsAsTooltips="true" 
+                        showAdvancedTooltip="true" 
+                        enableTickmarks="true" 
+                        width="100%" 
+                        progress="false" 
+                        class="sapUiSmallMarginBottom" 
+                        visible="{=  ${/_type} === 'interno'}">
+                    <ResponsiveScale tickmarksBetweenLabels="100"/>
+                </Slider>
+                <Slider value="{/_Salario}" min="100" max="2000" step="100" 
+                        inputsAsTooltips="true" 
+                        showAdvancedTooltip="true" 
+                        enableTickmarks="true" 
+                        width="100%" 
+                        progress="false" 
+                        class="sapUiSmallMarginBottom" 
+                        visible="{=  ${/_type} === 'autonomo'}">
+                    <ResponsiveScale tickmarksBetweenLabels="100"/>
+                </Slider>
+                <Slider value="{/_Salario}" min="50000" max="200000" step="1000" 
+                        inputsAsTooltips="true" 
+                        showAdvancedTooltip="true" 
+                        enableTickmarks="true" 
+                        width="100%" 
+                        progress="false" 
+                        class="sapUiSmallMarginBottom" 
+                        visible="{=  ${/_type} === 'gerente'}">
+                    <ResponsiveScale tickmarksBetweenLabels="100"/>
+                </Slider>
+            </l:VerticalLayout>
+
+            <Label text="{i18n>fechaIncorporacion}" required="true"></Label>
+            <DatePicker dateValue="{/CreationDate}" valueState="{/_FechaIncorp}" id="FechaIncorp" change="validarDatosEmpleados"/>
+
+        </f:content>
+    </f:SimpleForm>
+</core:FragmentDefinition>
