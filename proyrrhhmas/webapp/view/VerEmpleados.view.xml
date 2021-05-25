@@ -1,0 +1,49 @@
+<mvc:View xmlns:core="sap.ui.core"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m" controllerName="logaligroup.proyrrhhmas.controller.VerEmpleados"
+    xmlns:suite="sap.suite.ui.commons" class="sapUiSizeCompact">
+    <SplitApp id="splitAppEmpleados">
+        <masterPages>
+            <Page showHeader="false">
+                <Toolbar class="sapUiTinyMarginTop">
+                    <Button icon="sap-icon://nav-back" press="onBack"></Button>
+                    <SearchField id="searchEmpleado" search="onSearchEmpleados" width="100%" placeholder="{i18n>buscarNombre}" />
+                </Toolbar>
+                <List id="ListEmpleados" itemPress="onSelectEmpleados" items="{path:'odataEmployees>/Users',filters:[{path:'SapId',operator:'EQ',value1:'aosorio@seidor.com'}]}">
+                    <items>
+                        <StandardListItem title="{odataEmployees>FirstName} {odataEmployees>LastName}" description="{odataEmployees>Dni}" type="Active"/>
+                    </items>
+                </List>
+            </Page>
+        </masterPages>
+        <detailPages>
+            <Page id="detailSelectEmpleados" showHeader="false">
+                <FlexBox alignItems="Center" justifyContent="Center" height="100%">
+                    <Text text="{i18n>seleccioneEmpleado}"></Text>
+                </FlexBox>
+            </Page>
+            <Page id="detalleEmpleado" title="{i18n>detalleEmpleado}">
+                <ObjectHeader icon= "{= ${odataEmployees>Type}==='0' ? 'sap-icon://employee-pane' : ${odataEmployees>Type}==='1' ? 'sap-icon://employee' : 'sap-icon://leads' }" 
+                              title="{odataEmployees>FirstName} {odataEmployees>LastName}" 
+                              intro="{odataEmployees>Dni}" 
+                              class="sapUiResponsivePadding--header" 
+                              responsive="true">
+                    <ObjectAttribute title="{i18n>fechaIncorporacion}" 
+                                     text="{ path:'odataEmployees>CreationDate', type:'sap.ui.model.type.Date'}" />
+                    <ObjectAttribute title="{i18n>tipo}" 
+                                     text="{= ${odataEmployees>Type} === '0' ? ${i18n>interno} : ${odataEmployees>Type} === '1' ? ${i18n>autonomo} : ${i18n>gerente}}" />
+                    <ObjectAttribute title="{i18n>comentario}" 
+                                     text="{odataEmployees>Comments}" />
+                </ObjectHeader>
+                <core:Fragment fragmentName="logaligroup.proyrrhhmas.fragment.DetalleEmpleado" type="XML" />
+                <footer>
+                    <Toolbar>
+                        <ToolbarSpacer></ToolbarSpacer>
+                        <Button text="{i18n>darBaja}" press="onDarBajaEmpleado"></Button>
+                        <Button text="{i18n>ascender}" press="onAscenderEmpleado"></Button>
+                    </Toolbar>
+                </footer>
+            </Page>
+        </detailPages>
+    </SplitApp>
+</mvc:View>

@@ -10,7 +10,7 @@
                       maximumFileSize="10" 
                       multiple="true" 
                       sameFilenameAllowed="true" 
-                      uploadUrl="/sap/opu/odata/sap/ZEMPLOYEES_SRV/Attachments" 
+                      uploadUrl="sap/opu/odata/sap/ZEMPLOYEES_SRV/Attachments" 
                       instantUpload="false" 
                       change="onFileChange" 
                       beforeUploadStarts="onBeforeUploadStart" 

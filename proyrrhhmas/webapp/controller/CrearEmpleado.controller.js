@@ -71,8 +71,10 @@ sap.ui.define([
             MessageBox.confirm(this.getView().getModel("i18n").getResourceBundle().getText("confirmCancelar"), {
                 onClose: function (oAction) {
                     if (oAction === "OK") {
+                        var wizardNavContainer = this.byId("wizardNavContainer");
+                        wizardNavContainer.back();
                         var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
-                        oRouter.navTo("RouteMenu", {}, false);
+                        oRouter.navTo("RouteMenu", {}, true);
                     }
                 }.bind(this)
             });
@@ -80,7 +82,7 @@ sap.ui.define([
 
         validarDNI: function (oEvent) {
             //Si el tipo no es "autonomo"
-            if (this._model.getProperty("_type") !== "autonomo") {
+            if (this._model.getProperty("/_type") !== "autonomo") {
                 var dni = oEvent.getParameter("value");
                 var number;
                 var letter;
@@ -106,6 +108,9 @@ sap.ui.define([
                     this._model.setProperty("/_DNIStatus", "Error");
                     this.validarDatosEmpleados();
                 }
+            }else {
+                    this._model.setProperty("/_DNIStatus", "None");
+                    this.validarDatosEmpleados();
             }
         },
 
@@ -260,7 +265,7 @@ sap.ui.define([
         },
 
         onBeforeUploadStart: function (oEvent) {
-            let fileName = oEvent.getParameter("fileName");
+            var fileName = oEvent.getParameter("fileName");
             var oCustomerHeaderSlug = new UploadCollectionParameter({
                 name: "slug",
                 value: this.getOwnerComponent().SapId + ";" + this.EmployeeId + ";" + fileName

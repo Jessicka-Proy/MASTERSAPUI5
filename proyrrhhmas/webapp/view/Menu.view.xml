@@ -12,7 +12,7 @@
                 </GenericTile>
                 <GenericTile headerImage="sap-icon://employee-lookup" 
                              class="sapUiTinyMarginBegin sapUiTinyMarginTop" 
-                             press="navToVerEmpleado">
+                             press="navToVerEmpleados">
                     <TileContent footer="{i18n>verEmpleados}">
                     </TileContent>
                 </GenericTile>

@@ -1,0 +1,57 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core"
+    xmlns="sap.m"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:l="sap.ui.layout"
+    xmlns:u="sap.ui.unified"
+    xmlns:suite="sap.suite.ui.commons"
+    class="sapUiSizeCompact">
+    <IconTabBar class="sapUiResponsiveContentPadding">
+        <items>
+            <IconTabFilter design="Horizontal" icon="sap-icon://attachment" text="{i18n>ficheros}">
+                <UploadCollection id="UploadCollection" 
+                                  maximumFilenameLength="55" 
+                                  maximumFileSize="10" 
+                                  multiple="true" 
+                                  sameFilenameAllowed="true" 
+                                  instantUpload="true" 
+                                  uploadUrl="sap/opu/odata/sap/ZEMPLOYEES_SRV/Attachments" 
+                                  items="{odataEmployees>UserToAttachment}" 
+                                  change="onFileChange" 
+                                  uploadComplete="onFileUploadComplete" 
+                                  beforeUploadStarts="onFileBeforeUpload" 
+                                  fileDeleted="onFileDeleted" 
+                                  noDataDescription="{i18n>Arrastrarficheros}">
+                    <items>
+                        <UploadCollectionItem documentId="{odataEmployees>AttId}" 
+                                              visibleEdit="false" 
+                                              fileName="{odataEmployees>DocName}" 
+                                              press="onDownloadFile">
+                        </UploadCollectionItem>
+                    </items>
+                </UploadCollection>
+            </IconTabFilter>
+            <IconTabFilter icon="sap-icon://money-bills" design="Horizontal" text="{i18n>historial}">
+            	<suite:Timeline
+						   enableDoubleSided="true"
+						   groupByType="Year"
+						   groupBy="CreationDate"
+						   showHeaderBar="false"
+						   enableScroll="false"
+						   height="100%"
+						   sortOldestFirst="true"
+						   content="{odataEmployees>UserToSalary}">
+					<suite:content>
+						<suite:TimelineItem
+									userName="{parts:[{path:'odataEmployees>Ammount'},{path:'odataEmployees>Waers'}],
+										    	type: 'sap.ui.model.type.Currency',
+												formatOptions: {showMeasure: false}}"
+									icon="sap-icon://circle-task"
+									text="{odataEmployees>Comments}"
+									dateTime="{odataEmployees>CreationDate}">
+						</suite:TimelineItem>
+					</suite:content>
+				</suite:Timeline>
+            </IconTabFilter>
+        </items>
+    </IconTabBar>
+</core:FragmentDefinition>
