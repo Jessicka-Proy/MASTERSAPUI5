@@ -206,15 +206,15 @@ sap.ui.define([
     }
 
     function editStepOne() {
-        this._editToStep.bind(this)("TipoEmpleadoStep");
+        _editToStep.bind(this)("TipoEmpleadoStep");
     }
 
     function editStepTwo() {
-        this._editToStep.bind(this)("DatosEmpleadoStep");
+        _editToStep.bind(this)("DatosEmpleadoStep");
     }
 
     function editStepThree() {
-        this._editToStep.bind(this)("InfoAdicionalStep");
+        _editToStep.bind(this)("InfoAdicionalStep");
     }
 
     function onSaveEmployee(oEvent) {
@@ -227,7 +227,6 @@ sap.ui.define([
             }
         }
         body.SapId = this.getOwnerComponent().SapId;
-
         body.UserToSalary = [{
             Ammount: parseFloat(json._Salario).toString(),
             Comments: json.Comments,

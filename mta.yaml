@@ -1,6 +1,6 @@
 _schema-version: '3.2'
 ID: proy_rrhh_mas
-version: 0.0.1
+version: 0.0.6
 modules:
   - name: proy-rrhh-mas-approuter
     type: approuter.nodejs

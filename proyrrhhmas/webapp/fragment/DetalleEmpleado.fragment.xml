@@ -32,6 +32,7 @@
             </IconTabFilter>
             <IconTabFilter icon="sap-icon://money-bills" design="Horizontal" text="{i18n>historial}">
             	<suite:Timeline
+                           id="TimeLine"
 						   enableDoubleSided="true"
 						   groupByType="Year"
 						   groupBy="CreationDate"

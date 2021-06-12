@@ -3,7 +3,8 @@ sap.ui.define([
     "sap/ui/core/mvc/Controller",
     "sap/ui/core/routing/History",
     "sap/ui/model/Filter",
-    "sap/ui/model/FilterOperator"
+    "sap/ui/model/FilterOperator",
+    "sap/ui/core/Control"
 ],
 	/**
      * @param {typeof sap.ui.core.mvc.Controller} Controller
@@ -131,6 +132,7 @@ sap.ui.define([
 
         function onCancelAscenso(oEvent) {
             this.anscensoDialog.close();
+            this.getView().getModel("odataEmployees").refresh();
         }
 
         function addAscenso(oEvent) {
